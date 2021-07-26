@@ -3,10 +3,7 @@ package br.com.zupacademy.adriano.casadocodigo.modelo;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.Assert;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -16,6 +13,7 @@ import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
     public class Autor {
 
         @Id
@@ -26,6 +24,7 @@ import java.util.stream.Stream;
         private String nome;
 
         @Email @NotBlank
+        @Column(unique = true, nullable = false)
         private String email;
 
         @NotBlank

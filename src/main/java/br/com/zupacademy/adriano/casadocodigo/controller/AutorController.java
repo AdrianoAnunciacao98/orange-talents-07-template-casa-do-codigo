@@ -1,6 +1,7 @@
 package br.com.zupacademy.adriano.casadocodigo.controller;
 
 import br.com.zupacademy.adriano.casadocodigo.controller.dto.AutorDto;
+import br.com.zupacademy.adriano.casadocodigo.exception.AutorResponse;
 import br.com.zupacademy.adriano.casadocodigo.modelo.Autor;
 import br.com.zupacademy.adriano.casadocodigo.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,22 @@ public class AutorController {
     @Autowired
     private AutorRepository autorRepository;
 
+    @Autowired
+    private AutorResponse autorResponse;
+
     @PostMapping(value = "/autores")
-    public String cadastrar(@RequestBody @Valid AutorDto autorDto){
-           Autor autor = autorDto.toModel();
+    public ResponseEntity<Autor> cadastrar(@RequestBody @Valid AutorDto autorDto) {
+        Optional<Autor> email = autorRepository.findAutorByEmail(autorDto.getEmail());
+        if (email.isPresent()) {
+            autorResponse.setMessage("E-mail requer que seja único");
+            return new ResponseEntity(autorResponse, HttpStatus.BAD_REQUEST);
+        } else {
+            Autor autor = autorDto.toModel();
             autorRepository.save(autor);
-            return autor.toString();
+            autorResponse.setMessage("Sucesso");
+            return new ResponseEntity(autorResponse, HttpStatus.OK);
         }
 
-    }
+    } }
+
 
