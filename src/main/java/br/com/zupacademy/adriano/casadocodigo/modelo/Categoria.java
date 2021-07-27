@@ -12,10 +12,15 @@ public class Categoria {
     private Long id;
 
     @NotBlank
+    //já adicionado anteriormente, serve para esse exercicio de validação dos campos.
     @Column(unique = true, nullable = false)
     private String nome;
+
+    public Categoria(){}
 
     public Categoria( @NotBlank String nome) {
         this.nome = nome;
     }
+
+
 }

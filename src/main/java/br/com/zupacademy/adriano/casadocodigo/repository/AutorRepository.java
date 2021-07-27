@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface AutorRepository extends CrudRepository<Autor, Long> {
+
+    //adicionado para proteção anteriormente, mas serve para esse exercício de validação dos campos.
     @Query("select a from Autor a where a.email like ?1")
     Optional<Autor> findAutorByEmail(String email);
 }

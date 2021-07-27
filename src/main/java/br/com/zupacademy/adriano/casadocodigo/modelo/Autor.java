@@ -24,6 +24,7 @@ import java.util.stream.Stream;
         private String nome;
 
         @Email @NotBlank
+        //já adicionado anteriormente, serve para esse exercicio de validação dos campos.
         @Column(unique = true, nullable = false)
         private String email;
 
@@ -32,6 +33,8 @@ import java.util.stream.Stream;
         private String descricao;
 
         private LocalDateTime instante = LocalDateTime.now();
+
+        public Autor(){}
 
 
         public Autor(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Size(max=400) String descricao) {

@@ -8,6 +8,7 @@ import br.com.zupacademy.adriano.casadocodigo.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,10 +26,10 @@ public class CategoriaController {
     private CategoriaResponse categoriaResponse;
 
     @PostMapping(value = "/categorias")
-    public ResponseEntity<Categoria> cadastrar(@RequestBody @Valid CategoriaDto categoriaDto){
+    public ResponseEntity<Categoria> cadastrar(@RequestBody @Valid CategoriaDto categoriaDto, BindingResult result){
         Optional<Categoria> nome = categoriaRepository.findCategoriaByNome(categoriaDto.getNome());
-        if (nome.isPresent()) {
-            categoriaResponse.setMessage("Nome de categoria já existente");
+        if (nome.isPresent() || result.hasErrors()) {
+            categoriaResponse.setMessage("Nome de categoria já existente, erro na aplicação.");
             return new ResponseEntity(categoriaResponse, HttpStatus.BAD_REQUEST);
         } else {
             Categoria categoria = categoriaDto.toModel();
