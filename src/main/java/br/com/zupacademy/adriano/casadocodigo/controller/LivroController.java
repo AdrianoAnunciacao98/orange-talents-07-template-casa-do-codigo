@@ -2,17 +2,19 @@ package br.com.zupacademy.adriano.casadocodigo.controller;
 
 import br.com.zupacademy.adriano.casadocodigo.controller.dto.LivroDto;
 import br.com.zupacademy.adriano.casadocodigo.exception.LivroResponse;
+import br.com.zupacademy.adriano.casadocodigo.modelo.Categoria;
 import br.com.zupacademy.adriano.casadocodigo.modelo.Livro;
 import br.com.zupacademy.adriano.casadocodigo.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class LivroController {
@@ -37,4 +39,20 @@ public class LivroController {
         }
     }
 
-}
+    @GetMapping
+    public List<LivroDto> listar(LivroDto livroDto){
+        List<LivroDto> livros = new ArrayList<>();
+        for(LivroDto livro : livros){
+            livros.add(new LivroDto(livroDto.getIsbn(), livroDto.getTitulo()));
+        }
+        return livros;
+
+
+
+        }
+
+
+
+    }
+
+

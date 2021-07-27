@@ -23,10 +23,10 @@ public class Livro {
 
     private String sumario;
 
-    @NotBlank @Min(value=20)
+    @Min(value=20)
     private Double preco;
 
-     @Size(min=100)
+    @Min(value=100)
     private Integer paginas;
 
    private Date data;
@@ -45,8 +45,8 @@ public class Livro {
 
 
     public Livro(@NotBlank String titulo, @NotBlank @Size(max=500) String resumo,
-                 String sumario,  @NotBlank @Min(value=20) Double preco,
-                 @Size(min=100) Integer paginas,
+                 String sumario,  @Min(value=20) Double preco,
+                 @Min(value=100) Integer paginas,
                  @NotBlank @NotNull Categoria categoria, @NotBlank @NotNull  Autor autor) {
         this.titulo = titulo;
         this.resumo = resumo;
@@ -57,7 +57,31 @@ public class Livro {
         this.autor = autor;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
 
+    public String getResumo() {
+        return resumo;
+    }
 
+    public String getSumario() {
+        return sumario;
+    }
 
+    public Double getPreco() {
+        return preco;
+    }
+
+    public Integer getPaginas() {
+        return paginas;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
 }
