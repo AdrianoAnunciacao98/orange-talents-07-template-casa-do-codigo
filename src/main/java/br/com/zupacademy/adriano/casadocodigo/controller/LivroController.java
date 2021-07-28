@@ -45,10 +45,12 @@ public class LivroController {
         return LivroDto.converter(livros);
         }
     @GetMapping("/{id}")
-    public ResponseEntity<LivroDto> detalhar(@PathVariable Long id){
+    public ResponseEntity<LivroDto> detalhar(@PathVariable Long id, LivroDto livroDto){
         Optional<Livro> livro = livroRepository.findById(id);
         if(livro.isPresent()){
-            return ResponseEntity.ok(new LivroDto(livro.get()));
+            return ResponseEntity.ok(new LivroDto(livroDto.getTitulo(), livroDto.getResumo(),
+            livroDto.getSumario(), livroDto.getPreco(),
+                    livroDto.getPaginas(), livroDto.getCategoria(),livroDto.getAutor()));
         }
         return ResponseEntity.notFound().build();
     }

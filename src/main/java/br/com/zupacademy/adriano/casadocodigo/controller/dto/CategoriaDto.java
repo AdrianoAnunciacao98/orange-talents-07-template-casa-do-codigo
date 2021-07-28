@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nome"})})
+
 public class CategoriaDto {
 
     @NotBlank

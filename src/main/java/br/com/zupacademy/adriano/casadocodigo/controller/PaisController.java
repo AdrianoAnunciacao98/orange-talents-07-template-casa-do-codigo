@@ -33,7 +33,7 @@ public class PaisController {
             paisResponse.setMessage("Erro na aplicação devido a algum país errado." + result.getAllErrors());
             return new ResponseEntity(paisResponse, HttpStatus.BAD_REQUEST);
         } else {
-            Pais pais = paisDto.toModel();
+            Pais pais = new Pais(paisDto.getNome());
             paisRepository.save(pais);
             paisResponse.setMessage("Sucesso, país cadastrado:");
             return new ResponseEntity(paisResponse, HttpStatus.OK);

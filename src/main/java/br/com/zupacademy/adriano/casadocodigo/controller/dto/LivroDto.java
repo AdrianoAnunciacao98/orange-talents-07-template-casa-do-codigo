@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"titulo"})})
+
 public class LivroDto {
 
     @Id
@@ -96,6 +96,28 @@ public class LivroDto {
         return livros.stream().map(LivroDto::new).collect(Collectors.toList());
      }
 
-
+    public String getResumo() {
+        return resumo;
     }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public Integer getPaginas() {
+        return paginas;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+}
 

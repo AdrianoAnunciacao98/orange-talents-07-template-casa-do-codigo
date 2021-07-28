@@ -10,7 +10,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nome"})})
+
 public class EstadoDto {
 
     @NotBlank @Column(unique = true)
@@ -29,5 +29,13 @@ public class EstadoDto {
 
     public Estado toModel(){
         return new Estado(this.nome = nome, this.pais = pais);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Pais getPais() {
+        return pais;
     }
 }

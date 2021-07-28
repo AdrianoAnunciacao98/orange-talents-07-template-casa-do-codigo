@@ -32,7 +32,7 @@ public class EstadoController {
             estadoResponse.setMessage("Erro na aplicação devido a algum estado errado, ou falta de país." + result.getAllErrors());
             return new ResponseEntity(estadoResponse, HttpStatus.BAD_REQUEST);
         } else {
-            Estado estado = estadoDto.toModel();
+            Estado estado = new Estado(estadoDto.getNome(), estadoDto.getPais());
             estadoRepository.save(estado);
             estadoResponse.setMessage("Sucesso, estado cadastrado:");
             return new ResponseEntity(estadoResponse, HttpStatus.OK);

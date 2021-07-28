@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
+
 public class AutorDto {
     @NotBlank
     private String nome;

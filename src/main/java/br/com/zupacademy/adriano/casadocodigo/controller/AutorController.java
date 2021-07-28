@@ -37,7 +37,7 @@ public class AutorController {
             Autor autor = autorDto.toModel();
             autorRepository.save(autor);
             autorResponse.setMessage("Sucesso");
-            return new ResponseEntity(autorResponse, HttpStatus.OK);
+            return new ResponseEntity(autor.toString(), HttpStatus.OK);
         }
 
     } }

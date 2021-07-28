@@ -32,7 +32,7 @@ public class CategoriaController {
             categoriaResponse.setMessage("Nome de categoria já existente, erro na aplicação.");
             return new ResponseEntity(categoriaResponse, HttpStatus.BAD_REQUEST);
         } else {
-            Categoria categoria = categoriaDto.toModel();
+            Categoria categoria = new Categoria(categoriaDto.getNome());
             categoriaRepository.save(categoria);
             categoriaResponse.setMessage("Sucesso, nome cadastrado: ");
             return new ResponseEntity(categoriaResponse, HttpStatus.OK);
