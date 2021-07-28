@@ -39,18 +39,19 @@ public class LivroController {
         }
     }
 
-    @GetMapping
+    @GetMapping(value = "/livros")
     public List<LivroDto> listar(LivroDto livroDto){
-        List<LivroDto> livros = new ArrayList<>();
-        for(LivroDto livro : livros){
-            livros.add(new LivroDto(livroDto.getIsbn(), livroDto.getTitulo()));
+        List<Livro> livros = livroRepository.findByTituloAndId(livroDto.getIsbn(), livroDto.getTitulo());
+        return LivroDto.converter(livros);
         }
-        return livros;
-
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<LivroDto> detalhar(@PathVariable Long id){
+        Optional<Livro> livro = livroRepository.findById(id);
+        if(livro.isPresent()){
+            return ResponseEntity.ok(new LivroDto(livro.get()));
         }
-
+        return ResponseEntity.notFound().build();
+    }
 
 
     }

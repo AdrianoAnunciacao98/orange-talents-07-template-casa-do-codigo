@@ -13,7 +13,7 @@ public class Livro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long isbn;
+    private Long id;
 
     @NotBlank  @Column(unique = true, nullable = false)
     private String titulo;
